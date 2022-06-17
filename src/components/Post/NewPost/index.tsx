@@ -23,6 +23,7 @@ import {
   FEE_DATA_TYPE,
   getModule
 } from '@lib/getModule'
+import { registerCtrlCmdEnter } from '@lib/keyboardHooks'
 import omit from '@lib/omit'
 import splitSignature from '@lib/splitSignature'
 import trimify from '@lib/trimify'
@@ -304,20 +305,7 @@ const NewPost: FC<Props> = ({ setShowModal, hideCard = false }) => {
     userSigNonce
   ])
 
-  useEffect(() => {
-    const keyPressEvent = (e: KeyboardEvent) => {
-      const modifier = e.metaKey || e.ctrlKey
-      if (modifier && e.code === 'Enter') {
-        createPost()
-      }
-    }
-
-    document.addEventListener('keydown', keyPressEvent)
-
-    return () => {
-      document.removeEventListener('keydown', keyPressEvent)
-    }
-  }, [createPost])
+  useEffect(() => registerCtrlCmdEnter(createPost), [createPost])
 
   const setGifAttachment = (gif: IGif) => {
     const attachment = {

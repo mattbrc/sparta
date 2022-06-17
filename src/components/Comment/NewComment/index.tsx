@@ -27,12 +27,13 @@ import {
   FEE_DATA_TYPE,
   getModule
 } from '@lib/getModule'
+import { registerCtrlCmdEnter } from '@lib/keyboardHooks'
 import omit from '@lib/omit'
 import splitSignature from '@lib/splitSignature'
 import trimify from '@lib/trimify'
 import uploadToIPFS from '@lib/uploadToIPFS'
 import dynamic from 'next/dynamic'
-import { FC, useContext, useState } from 'react'
+import { FC, useCallback, useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import {
   APP_NAME,
@@ -235,7 +236,7 @@ const NewComment: FC<Props> = ({ post, type }) => {
     }
   )
 
-  const createComment = async () => {
+  const createComment = useCallback(async () => {
     if (!account?.address) {
       toast.error(CONNECT_WALLET)
     } else if (activeChain?.id !== CHAIN_ID) {
@@ -293,7 +294,25 @@ const NewComment: FC<Props> = ({ post, type }) => {
         }
       })
     }
-  }
+  }, [
+    account?.address,
+    activeChain?.id,
+    attachments,
+    commentContent,
+    createCommentTypedData,
+    currentUser?.handle,
+    currentUser?.id,
+    feeData,
+    onlyFollowers,
+    post?.__typename,
+    post?.id,
+    post?.mirrorOf?.id,
+    selectedModule.moduleName,
+    type,
+    userSigNonce
+  ])
+
+  useEffect(() => registerCtrlCmdEnter(createComment), [createComment])
 
   const setGifAttachment = (gif: IGif) => {
     const attachment = {
