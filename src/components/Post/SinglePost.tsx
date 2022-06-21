@@ -14,14 +14,14 @@ dayjs.extend(relativeTime)
 
 interface Props {
   post: LensterPost
-  hideType?: boolean
+  showType?: boolean
   showThread?: boolean
   showActions?: boolean
 }
 
 const SinglePost: FC<Props> = ({
   post,
-  hideType = false,
+  showType = true,
   showThread = false,
   showActions = true
 }) => {
@@ -29,7 +29,7 @@ const SinglePost: FC<Props> = ({
 
   return (
     <div className="p-5">
-      <PostType post={post} hideType={hideType} showThread={showThread} />
+      {showType && <PostType post={post} showThread={showThread} />}
       <div>
         <div className="flex justify-between pb-4 space-x-1.5">
           <UserProfile

@@ -32,7 +32,7 @@ const NewPostModal: FC = () => {
       >
         {quotedPub ? (
           <Card className="mx-5 mt-5">
-            <SinglePost post={quotedPub} showActions={false} />
+            <SinglePost post={quotedPub} showType={false} showActions={false} />
           </Card>
         ) : null}
         <NewPost hideCard />
