@@ -249,7 +249,7 @@ const NewPost: FC<Props> = ({ hideCard = false }) => {
         },
         {
           traitType: 'string',
-          key: 'quoteId',
+          key: 'quotePubId',
           value: quotedPub?.id ?? null
         }
       ],
