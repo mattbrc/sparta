@@ -8,13 +8,17 @@ interface AppState {
   setProfiles: (profiles: Profile[]) => void
   userSigNonce: number
   setUserSigNonce: (userSigNonce: number) => void
+  showNewPostModal: boolean
+  setShowNewPostModal: (showNewPostModal: boolean) => void
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
   profiles: [],
   setProfiles: (profiles) => set(() => ({ profiles })),
   userSigNonce: 0,
-  setUserSigNonce: (userSigNonce) => set(() => ({ userSigNonce }))
+  setUserSigNonce: (userSigNonce) => set(() => ({ userSigNonce })),
+  showNewPostModal: false,
+  setShowNewPostModal: (showNewPostModal) => set(() => ({ showNewPostModal }))
 }))
 
 interface PersistState {

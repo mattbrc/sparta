@@ -26,7 +26,7 @@ import splitSignature from '@lib/splitSignature'
 import trimify from '@lib/trimify'
 import uploadToIPFS from '@lib/uploadToIPFS'
 import dynamic from 'next/dynamic'
-import { Dispatch, FC, useState } from 'react'
+import { FC, useState } from 'react'
 import toast from 'react-hot-toast'
 import {
   APP_NAME,
@@ -98,11 +98,10 @@ export const CREATE_POST_TYPED_DATA_MUTATION = gql`
 `
 
 interface Props {
-  setShowModal?: Dispatch<boolean>
   hideCard?: boolean
 }
 
-const NewPost: FC<Props> = ({ setShowModal, hideCard = false }) => {
+const NewPost: FC<Props> = ({ hideCard = false }) => {
   const { userSigNonce, setUserSigNonce } = useAppStore()
   const { isAuthenticated, currentUser } = usePersistStore()
   const [preview, setPreview] = useState<boolean>(false)
@@ -330,7 +329,6 @@ const NewPost: FC<Props> = ({ setShowModal, hideCard = false }) => {
             <div className="flex items-center pt-2 ml-auto space-x-2 sm:pt-0">
               {data?.hash ?? broadcastData?.broadcast?.txHash ? (
                 <PubIndexStatus
-                  setShowModal={setShowModal}
                   type="Post"
                   txHash={
                     data?.hash ? data?.hash : broadcastData?.broadcast?.txHash

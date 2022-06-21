@@ -1,11 +1,12 @@
 import { Modal } from '@components/UI/Modal'
 import { PencilAltIcon } from '@heroicons/react/outline'
-import { FC, useState } from 'react'
+import { FC } from 'react'
+import { useAppStore } from 'src/store'
 
 import NewPost from '..'
 
 const NewPostModal: FC = () => {
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const { showNewPostModal, setShowNewPostModal } = useAppStore()
 
   return (
     <>
@@ -13,7 +14,7 @@ const NewPostModal: FC = () => {
         type="button"
         className="flex items-start"
         onClick={() => {
-          setShowModal(!showModal)
+          setShowNewPostModal(!showNewPostModal)
         }}
       >
         <PencilAltIcon className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -22,10 +23,10 @@ const NewPostModal: FC = () => {
         title="New Post"
         icon={<PencilAltIcon className="w-5 h-5 text-brand" />}
         size="md"
-        show={showModal}
-        onClose={() => setShowModal(!showModal)}
+        show={showNewPostModal}
+        onClose={() => setShowNewPostModal(!showNewPostModal)}
       >
-        <NewPost setShowModal={setShowModal} hideCard />
+        <NewPost hideCard />
       </Modal>
     </>
   )
