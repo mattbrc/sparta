@@ -1,3 +1,5 @@
+import SinglePost from '@components/Post/SinglePost'
+import { Card } from '@components/UI/Card'
 import { Modal } from '@components/UI/Modal'
 import { PencilAltIcon } from '@heroicons/react/outline'
 import { FC } from 'react'
@@ -6,7 +8,8 @@ import { useAppStore } from 'src/store'
 import NewPost from '..'
 
 const NewPostModal: FC = () => {
-  const { showNewPostModal, setShowNewPostModal } = useAppStore()
+  const { showNewPostModal, setShowNewPostModal, setQuotedPub, quotedPub } =
+    useAppStore()
 
   return (
     <>
@@ -14,6 +17,7 @@ const NewPostModal: FC = () => {
         type="button"
         className="flex items-start"
         onClick={() => {
+          setQuotedPub(null)
           setShowNewPostModal(!showNewPostModal)
         }}
       >
@@ -26,6 +30,11 @@ const NewPostModal: FC = () => {
         show={showNewPostModal}
         onClose={() => setShowNewPostModal(!showNewPostModal)}
       >
+        {quotedPub ? (
+          <Card className="mx-5 mt-5">
+            <SinglePost post={quotedPub} showActions={false} />
+          </Card>
+        ) : null}
         <NewPost hideCard />
       </Modal>
     </>

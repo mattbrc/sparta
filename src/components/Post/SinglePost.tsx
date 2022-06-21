@@ -16,12 +16,14 @@ interface Props {
   post: LensterPost
   hideType?: boolean
   showThread?: boolean
+  showActions?: boolean
 }
 
 const SinglePost: FC<Props> = ({
   post,
   hideType = false,
-  showThread = false
+  showThread = false,
+  showActions = true
 }) => {
   const postType = post?.metadata?.attributes[0]?.value
 
@@ -54,7 +56,7 @@ const SinglePost: FC<Props> = ({
           ) : (
             <>
               <PostBody post={post} />
-              <PostActions post={post} />
+              {showActions && <PostActions post={post} />}
             </>
           )}
         </div>

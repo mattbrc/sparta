@@ -67,7 +67,8 @@ interface Props {
 
 const Mirror: FC<Props> = ({ post }) => {
   const [count, setCount] = useState<number>(0)
-  const { userSigNonce, setUserSigNonce, setShowNewPostModal } = useAppStore()
+  const { userSigNonce, setUserSigNonce, setShowNewPostModal, setQuotedPub } =
+    useAppStore()
   const { isAuthenticated, currentUser } = usePersistStore()
 
   useEffect(() => {
@@ -262,7 +263,10 @@ const Mirror: FC<Props> = ({ post }) => {
                     'block px-4 py-1.5 text-sm m-2 rounded-lg cursor-pointer'
                   )
                 }
-                onClick={() => setShowNewPostModal(true)}
+                onClick={() => {
+                  setShowNewPostModal(true)
+                  setQuotedPub(post)
+                }}
               >
                 <div className="flex items-center space-x-2">
                   <PencilIcon className="w-4 h-4" />

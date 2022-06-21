@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { LensterPost } from '@generated/lenstertypes'
 import { Profile } from '@generated/types'
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
@@ -10,6 +11,8 @@ interface AppState {
   setUserSigNonce: (userSigNonce: number) => void
   showNewPostModal: boolean
   setShowNewPostModal: (showNewPostModal: boolean) => void
+  quotedPub: LensterPost | null
+  setQuotedPub: (quotedPub: LensterPost) => void
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -18,7 +21,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   userSigNonce: 0,
   setUserSigNonce: (userSigNonce) => set(() => ({ userSigNonce })),
   showNewPostModal: false,
-  setShowNewPostModal: (showNewPostModal) => set(() => ({ showNewPostModal }))
+  setShowNewPostModal: (showNewPostModal) => set(() => ({ showNewPostModal })),
+  quotedPub: null,
+  setQuotedPub: (quotedPub) => set(() => ({ quotedPub }))
 }))
 
 interface PersistState {
