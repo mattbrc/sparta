@@ -243,13 +243,13 @@ const NewPost: FC<Props> = ({ hideCard = false }) => {
       contentWarning: null, // TODO
       attributes: [
         {
-          traitType: 'string',
-          key: 'type',
+          displayType: 'string',
+          traitType: 'type',
           value: 'post'
         },
         {
-          traitType: 'string',
-          key: 'quotePubId',
+          displayType: 'string',
+          traitType: 'quotePubId',
           value: quotedPub?.id ?? null
         }
       ],

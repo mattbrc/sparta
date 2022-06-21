@@ -1,5 +1,6 @@
 import UserProfile from '@components/Shared/UserProfile'
 import { LensterPost } from '@generated/lenstertypes'
+import getPublicationAttribute from '@lib/getPublicationAttribute'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import Link from 'next/link'
@@ -26,9 +27,14 @@ const SinglePost: FC<Props> = ({
   showActions = true
 }) => {
   const postType = post?.metadata?.attributes[0]?.value
+  const quotedPub = getPublicationAttribute(
+    post?.metadata?.attributes,
+    'quotePubId'
+  )
 
   return (
     <div className="p-5">
+      {quotedPub}
       {showType && <PostType post={post} showThread={showThread} />}
       <div>
         <div className="flex justify-between pb-4 space-x-1.5">
