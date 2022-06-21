@@ -102,7 +102,7 @@ interface Props {
 }
 
 const NewPost: FC<Props> = ({ hideCard = false }) => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
+  const { userSigNonce, setUserSigNonce, quotedPub } = useAppStore()
   const { isAuthenticated, currentUser } = usePersistStore()
   const [preview, setPreview] = useState<boolean>(false)
   const [postContent, setPostContent] = useState<string>('')
@@ -246,6 +246,11 @@ const NewPost: FC<Props> = ({ hideCard = false }) => {
           traitType: 'string',
           key: 'type',
           value: 'post'
+        },
+        {
+          traitType: 'string',
+          key: 'quoteId',
+          value: quotedPub?.id ?? null
         }
       ],
       media: attachments,

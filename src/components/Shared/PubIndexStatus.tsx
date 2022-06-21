@@ -25,7 +25,7 @@ interface Props {
 }
 
 const PubIndexStatus: FC<Props> = ({ type, txHash }) => {
-  const { setShowNewPostModal } = useAppStore()
+  const { setShowNewPostModal, setQuotedPub } = useAppStore()
   const { push } = useRouter()
   const [pollInterval, setPollInterval] = useState<number>(500)
   const { data, loading } = useQuery(TX_STATUS_QUERY, {
@@ -36,9 +36,8 @@ const PubIndexStatus: FC<Props> = ({ type, txHash }) => {
     onCompleted(data) {
       if (data?.publication) {
         setPollInterval(0)
-        if (setShowNewPostModal) {
-          setShowNewPostModal(false)
-        }
+        if (setShowNewPostModal) setShowNewPostModal(false)
+        if (setQuotedPub) setQuotedPub(null)
         push(`/posts/${data?.publication?.id}`)
       }
     }
