@@ -12,7 +12,7 @@ interface AppState {
   showNewPostModal: boolean
   setShowNewPostModal: (showNewPostModal: boolean) => void
   quotedPub: LensterPost | null
-  setQuotedPub: (quotedPub: LensterPost) => void
+  setQuotedPub: (quotedPub: LensterPost | null) => void
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
