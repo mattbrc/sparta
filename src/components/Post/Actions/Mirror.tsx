@@ -1,18 +1,19 @@
 import { LensHubProxy } from '@abis/LensHubProxy'
 import { gql, useMutation } from '@apollo/client'
-import { Spinner } from '@components/UI/Spinner'
 import { Tooltip } from '@components/UI/Tooltip'
 import { LensterPost } from '@generated/lenstertypes'
 import { CreateMirrorBroadcastItemResult } from '@generated/types'
 import { BROADCAST_MUTATION } from '@gql/BroadcastMutation'
-import { SwitchHorizontalIcon } from '@heroicons/react/outline'
+import { Menu, Transition } from '@headlessui/react'
+import { PencilIcon, SwitchHorizontalIcon } from '@heroicons/react/outline'
 import consoleLog from '@lib/consoleLog'
 import humanize from '@lib/humanize'
 import nFormatter from '@lib/nFormatter'
 import omit from '@lib/omit'
 import splitSignature from '@lib/splitSignature'
+import clsx from 'clsx'
 import { motion } from 'framer-motion'
-import { FC, useEffect, useState } from 'react'
+import { FC, Fragment, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import {
   CONNECT_WALLET,
@@ -66,7 +67,7 @@ interface Props {
 
 const Mirror: FC<Props> = ({ post }) => {
   const [count, setCount] = useState<number>(0)
-  const { userSigNonce, setUserSigNonce } = useAppStore()
+  const { userSigNonce, setUserSigNonce, setShowNewPostModal } = useAppStore()
   const { isAuthenticated, currentUser } = usePersistStore()
 
   useEffect(() => {
@@ -198,32 +199,81 @@ const Mirror: FC<Props> = ({ post }) => {
   }
 
   return (
-    <motion.button
-      whileTap={{ scale: 0.9 }}
-      onClick={createMirror}
-      disabled={typedDataLoading || writeLoading}
-      aria-label="Mirror"
-    >
-      <div className="flex items-center space-x-1 text-brand">
-        <div className="p-1.5 rounded-full hover:bg-opacity-20 hover:bg-brand-300">
-          {typedDataLoading ||
-          signLoading ||
-          writeLoading ||
-          broadcastLoading ? (
-            <Spinner size="xs" />
-          ) : (
-            <Tooltip
-              placement="top"
-              content={count > 0 ? `${humanize(count)} Mirrors` : 'Mirror'}
-              withDelay
+    <Menu as="div">
+      {({ open }) => (
+        <>
+          <Menu.Button
+            as={motion.button}
+            className="flex items-center space-x-1 text-brand"
+            whileTap={{ scale: 0.9 }}
+            aria-label="Mirror"
+          >
+            <div className="p-1.5 rounded-full hover:bg-brand-300 hover:bg-opacity-20">
+              <Tooltip
+                placement="top"
+                content={count > 0 ? `${humanize(count)} Mirrors` : 'Mirror'}
+                withDelay
+              >
+                <SwitchHorizontalIcon className="w-[18px]" />
+              </Tooltip>
+            </div>
+            {count > 0 && <div className="text-xs">{nFormatter(count)}</div>}
+          </Menu.Button>
+          <Transition
+            show={open}
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items
+              static
+              className="absolute py-1 w-max bg-white rounded-xl border shadow-sm dark:bg-gray-900 focus:outline-none z-[5] dark:border-gray-700/80"
             >
-              <SwitchHorizontalIcon className="w-[18px]" />
-            </Tooltip>
-          )}
-        </div>
-        {count > 0 && <div className="text-xs">{nFormatter(count)}</div>}
-      </div>
-    </motion.button>
+              <Menu.Item
+                as="div"
+                className={({ active }: { active: boolean }) =>
+                  clsx(
+                    { 'dropdown-active': active },
+                    'block px-4 py-1.5 text-sm m-2 rounded-lg cursor-pointer'
+                  )
+                }
+                onClick={createMirror}
+                disabled={
+                  signLoading ||
+                  typedDataLoading ||
+                  writeLoading ||
+                  broadcastLoading
+                }
+              >
+                <div className="flex items-center space-x-2">
+                  <SwitchHorizontalIcon className="w-4 h-4" />
+                  <div>Mirror</div>
+                </div>
+              </Menu.Item>
+              <Menu.Item
+                as="div"
+                className={({ active }: { active: boolean }) =>
+                  clsx(
+                    { 'dropdown-active': active },
+                    'block px-4 py-1.5 text-sm m-2 rounded-lg cursor-pointer'
+                  )
+                }
+                onClick={() => setShowNewPostModal(true)}
+              >
+                <div className="flex items-center space-x-2">
+                  <PencilIcon className="w-4 h-4" />
+                  <div>Quote {post?.__typename}</div>
+                </div>
+              </Menu.Item>
+            </Menu.Items>
+          </Transition>
+        </>
+      )}
+    </Menu>
   )
 }
 
