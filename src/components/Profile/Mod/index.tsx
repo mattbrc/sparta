@@ -10,8 +10,8 @@ import {
   PhotographIcon
 } from '@heroicons/react/outline'
 import formatAddress from '@lib/formatAddress'
-import getAttribute from '@lib/getAttribute'
 import { getFollowModule } from '@lib/getFollowModule'
+import getProfileAttribute from '@lib/getProfileAttribute'
 import hasPrideLogo from '@lib/hasPrideLogo'
 import isBeta from '@lib/isBeta'
 import React, { FC, ReactNode } from 'react'
@@ -54,7 +54,7 @@ const ProfileMod: FC<Props> = ({ profile }) => {
       <CardBody>
         <div className="text-lg font-bold">Details</div>
         <div className="mt-3 space-y-1.5">
-          {getAttribute(profile?.attributes, 'app') === APP_NAME && (
+          {getProfileAttribute(profile?.attributes, 'app') === APP_NAME && (
             <MetaDetails
               icon={
                 <img

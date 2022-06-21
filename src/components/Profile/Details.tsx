@@ -14,8 +14,8 @@ import {
 } from '@heroicons/react/outline'
 import { BadgeCheckIcon, ShieldCheckIcon } from '@heroicons/react/solid'
 import formatAddress from '@lib/formatAddress'
-import getAttribute from '@lib/getAttribute'
 import getAvatar from '@lib/getAvatar'
+import getProfileAttribute from '@lib/getProfileAttribute'
 import isStaff from '@lib/isStaff'
 import isVerified from '@lib/isVerified'
 import Link from 'next/link'
@@ -171,9 +171,9 @@ const Details: FC<Props> = ({ profile }) => {
               {profile?.id}
             </Tooltip>
           </MetaDetails>
-          {getAttribute(profile?.attributes, 'location') && (
+          {getProfileAttribute(profile?.attributes, 'location') && (
             <MetaDetails icon={<LocationMarkerIcon className="w-4 h-4" />}>
-              {getAttribute(profile?.attributes, 'location') as any}
+              {getProfileAttribute(profile?.attributes, 'location') as any}
             </MetaDetails>
           )}
           {ensName && (
@@ -191,11 +191,11 @@ const Details: FC<Props> = ({ profile }) => {
               {ensName as any}
             </MetaDetails>
           )}
-          {getAttribute(profile?.attributes, 'website') && (
+          {getProfileAttribute(profile?.attributes, 'website') && (
             <MetaDetails
               icon={
                 <img
-                  src={`https://www.google.com/s2/favicons?domain=${getAttribute(
+                  src={`https://www.google.com/s2/favicons?domain=${getProfileAttribute(
                     profile?.attributes,
                     'website'
                   )
@@ -209,19 +209,22 @@ const Details: FC<Props> = ({ profile }) => {
               }
             >
               <a
-                href={`https://${getAttribute(profile?.attributes, 'website')
+                href={`https://${getProfileAttribute(
+                  profile?.attributes,
+                  'website'
+                )
                   ?.replace('https://', '')
                   .replace('http://', '')}`}
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                {getAttribute(profile?.attributes, 'website')
+                {getProfileAttribute(profile?.attributes, 'website')
                   ?.replace('https://', '')
                   .replace('http://', '')}
               </a>
             </MetaDetails>
           )}
-          {getAttribute(profile?.attributes, 'twitter') && (
+          {getProfileAttribute(profile?.attributes, 'twitter') && (
             <MetaDetails
               icon={
                 resolvedTheme === 'dark' ? (
@@ -244,14 +247,14 @@ const Details: FC<Props> = ({ profile }) => {
               }
             >
               <a
-                href={`https://twitter.com/${getAttribute(
+                href={`https://twitter.com/${getProfileAttribute(
                   profile?.attributes,
                   'twitter'
                 )}`}
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                {getAttribute(profile?.attributes, 'twitter')?.replace(
+                {getProfileAttribute(profile?.attributes, 'twitter')?.replace(
                   'https://twitter.com/',
                   ''
                 )}

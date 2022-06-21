@@ -13,11 +13,11 @@ type Query =
   | 'location'
   | 'website'
 
-const getAttribute = (
+const getProfileAttribute = (
   attributes: Maybe<Attribute[]> | undefined,
   query: Query
 ): string | undefined => {
   return attributes?.find((o) => o.key === query)?.value
 }
 
-export default getAttribute
+export default getProfileAttribute

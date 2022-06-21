@@ -1,8 +1,8 @@
 import { Profile } from '@generated/types'
 
-import getAttribute from './getAttribute'
+import getProfileAttribute from './getProfileAttribute'
 
 const hasPrideLogo = (profile: Profile): boolean =>
-  getAttribute(profile?.attributes, 'hasPrideLogo') === 'true'
+  getProfileAttribute(profile?.attributes, 'hasPrideLogo') === 'true'
 
 export default hasPrideLogo

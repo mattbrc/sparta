@@ -19,7 +19,7 @@ import { BROADCAST_MUTATION } from '@gql/BroadcastMutation'
 import { PencilIcon } from '@heroicons/react/outline'
 import consoleLog from '@lib/consoleLog'
 import generateSnowflake from '@lib/generateSnowflake'
-import getAttribute from '@lib/getAttribute'
+import getProfileAttribute from '@lib/getProfileAttribute'
 import hasPrideLogo from '@lib/hasPrideLogo'
 import imagekitURL from '@lib/imagekitURL'
 import isBeta from '@lib/isBeta'
@@ -215,9 +215,9 @@ const Profile: FC<Props> = ({ profile }) => {
     schema: editProfileSchema,
     defaultValues: {
       name: profile?.name as string,
-      location: getAttribute(profile?.attributes, 'location') as string,
-      website: getAttribute(profile?.attributes, 'website') as string,
-      twitter: getAttribute(profile?.attributes, 'twitter')?.replace(
+      location: getProfileAttribute(profile?.attributes, 'location') as string,
+      website: getProfileAttribute(profile?.attributes, 'website') as string,
+      twitter: getProfileAttribute(profile?.attributes, 'twitter')?.replace(
         'https://twitter.com/',
         ''
       ) as string,
