@@ -42,10 +42,26 @@ const QuotePost: FC<Props> = ({ quotePubId }) => {
     }
   })
 
-  console.log(data)
-
   const post = data?.publication
   const postType = post?.metadata?.attributes[0]?.value
+
+  if (loading)
+    return (
+      <Card className="mt-5 p-5">
+        <div className="flex items-center space-x-2 pb-2">
+          <div className="flex items-center space-x-2">
+            <div className="shimmer h-5 w-5 rounded-full" />
+            <div className="shimmer h-3 w-20 rounded-lg" />
+          </div>
+          <span>·</span>
+          <div className="shimmer h-3 w-14 rounded-lg" />
+        </div>
+        <div>
+          <div className="shimmer h-3 w-5/6 rounded-lg" />
+        </div>
+      </Card>
+    )
+  if (!post) return null
 
   return (
     <Link href={`/posts/${post?.id ?? post?.pubId}`} prefetch={false}>
