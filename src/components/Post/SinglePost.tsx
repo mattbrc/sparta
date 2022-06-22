@@ -9,6 +9,7 @@ import React, { FC } from 'react'
 import PostActions from './Actions'
 import HiddenPost from './HiddenPost'
 import PostBody from './PostBody'
+import QuotePost from './QuotePost'
 import PostType from './Type'
 
 dayjs.extend(relativeTime)
@@ -34,7 +35,6 @@ const SinglePost: FC<Props> = ({
 
   return (
     <div className="p-5">
-      {quotedPub}
       {showType && <PostType post={post} showThread={showThread} />}
       <div>
         <div className="flex justify-between pb-4 space-x-1.5">
@@ -62,6 +62,7 @@ const SinglePost: FC<Props> = ({
           ) : (
             <>
               <PostBody post={post} />
+              {quotedPub && <QuotePost quotePubId={quotedPub} />}
               {showActions && <PostActions post={post} />}
             </>
           )}
