@@ -20,6 +20,8 @@ export const useAppStore = create<AppState>((set, get) => ({
 interface PersistState {
   isAuthenticated: boolean
   setIsAuthenticated: (isAuthenticated: boolean) => void
+  selectedProfile: number
+  setSelectedProfile: (selectedProfile: number) => void
   currentUser: Profile | undefined
   setCurrentUser: (currentUser: Profile | undefined) => void
   staffMode: boolean
@@ -31,6 +33,8 @@ export const usePersistStore = create(
     (set) => ({
       isAuthenticated: false,
       setIsAuthenticated: (isAuthenticated) => set(() => ({ isAuthenticated })),
+      selectedProfile: 0,
+      setSelectedProfile: (selectedProfile) => set(() => ({ selectedProfile })),
       currentUser: undefined,
       setCurrentUser: (currentUser) => set(() => ({ currentUser })),
       staffMode: false,
