@@ -38,8 +38,7 @@ interface Props {
 
 const SiteLayout: FC<Props> = ({ children }) => {
   const { resolvedTheme } = useTheme()
-  const { currentUser, setCurrentUser, setProfiles, setUserSigNonce } =
-    useAppStore()
+  const { setCurrentUser, setProfiles, setUserSigNonce } = useAppStore()
   const {
     isAuthenticated,
     setIsAuthenticated,
@@ -106,10 +105,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
     } else {
       if (isAuthenticated) logout()
     }
-    if (!activeConnector?.id && mounted) {
-      disconnect()
-      setIsAuthenticated(false)
-    }
+
     activeConnector?.on('change', () => {
       logout()
     })
@@ -138,7 +134,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
     loading: { className: 'border border-gray-300' }
   }
 
-  if (loading || pageLoading) return <Loading />
+  if (!mounted || loading || pageLoading) return <Loading />
 
   return (
     <>
