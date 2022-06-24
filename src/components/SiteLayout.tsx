@@ -38,12 +38,8 @@ interface Props {
 const SiteLayout: FC<Props> = ({ children }) => {
   const { resolvedTheme } = useTheme()
   const { setCurrentUser, setProfiles, setUserSigNonce } = useAppStore()
-  const {
-    isAuthenticated,
-    setIsAuthenticated,
-    selectedProfile,
-    setSelectedProfile
-  } = usePersistStore()
+  const { isAuthenticated, setIsAuthenticated, selectedProfile } =
+    usePersistStore()
   const [mounted, setIsMounted] = useState<boolean>(false)
   const { data: account } = useAccount()
   const { activeConnector } = useConnect()
