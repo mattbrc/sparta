@@ -65,9 +65,9 @@ interface Props {
 }
 
 const Mirror: FC<Props> = ({ post }) => {
-  const [count, setCount] = useState<number>(0)
   const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
   const { isAuthenticated } = usePersistStore()
+  const [count, setCount] = useState<number>(0)
 
   useEffect(() => {
     if (

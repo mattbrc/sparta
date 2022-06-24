@@ -44,7 +44,9 @@ interface Props {
 }
 
 const WalletSelector: FC<Props> = ({ setHasConnected, setHasProfile }) => {
-  const [mounted, setMounted] = useState(false)
+  const { setCurrentUser, setProfiles } = useAppStore()
+  const { setIsAuthenticated, setSelectedProfile } = usePersistStore()
+  const [mounted, setMounted] = useState<boolean>(false)
   const { activeChain } = useNetwork()
   const { signMessageAsync, isLoading: signLoading } = useSignMessage()
   const [
@@ -77,8 +79,6 @@ const WalletSelector: FC<Props> = ({ setHasConnected, setHasProfile }) => {
 
   const { connectors, error, connectAsync } = useConnect()
   const { data: accountData } = useAccount()
-  const { setCurrentUser, setProfiles } = useAppStore()
-  const { setIsAuthenticated, setSelectedProfile } = usePersistStore()
 
   const onConnect = async (x: Connector) => {
     await connectAsync(x).then(({ account }) => {

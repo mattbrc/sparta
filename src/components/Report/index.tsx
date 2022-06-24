@@ -42,9 +42,9 @@ const Report: FC = () => {
   const {
     query: { id }
   } = useRouter()
+  const { currentUser } = useAppStore()
   const [type, setType] = useState<string>('')
   const [subReason, setSubReason] = useState<string>('')
-  const { currentUser } = useAppStore()
   const { data, loading, error } = useQuery(POST_QUERY, {
     variables: {
       request: { publicationId: id },
