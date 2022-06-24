@@ -64,7 +64,6 @@ const SiteLayout: FC<Props> = ({ children }) => {
         )
 
       if (profiles.length === 0) {
-        setCurrentUser(null)
         setSelectedProfile(0)
       } else {
         setProfiles(profiles)
