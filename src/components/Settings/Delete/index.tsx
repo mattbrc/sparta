@@ -58,9 +58,9 @@ const CREATE_BURN_PROFILE_TYPED_DATA_MUTATION = gql`
 `
 
 const DeleteSettings: FC = () => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, setIsAuthenticated, currentUser, setCurrentUser } =
-    usePersistStore()
+  const { currentUser, setCurrentUser, userSigNonce, setUserSigNonce } =
+    useAppStore()
+  const { isAuthenticated, setIsAuthenticated } = usePersistStore()
   const { disconnect } = useDisconnect()
   const { isLoading: signLoading, signTypedDataAsync } = useSignTypedData({
     onError(error) {
@@ -70,7 +70,7 @@ const DeleteSettings: FC = () => {
 
   const onCompleted = () => {
     setIsAuthenticated(false)
-    setCurrentUser(undefined)
+    setCurrentUser(null)
     Cookies.remove('accessToken')
     Cookies.remove('refreshToken')
     localStorage.removeItem('lenster.store')

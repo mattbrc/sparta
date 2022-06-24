@@ -110,8 +110,8 @@ const NewComment: FC<Props> = ({ post, type }) => {
   const [preview, setPreview] = useState<boolean>(false)
   const [commentContent, setCommentContent] = useState<string>('')
   const [commentContentError, setCommentContentError] = useState<string>('')
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [selectedModule, setSelectedModule] =
     useState<EnabledModule>(defaultModuleData)
   const [onlyFollowers, setOnlyFollowers] = useState<boolean>(false)

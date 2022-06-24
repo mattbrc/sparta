@@ -38,9 +38,14 @@ interface Props {
 
 const SiteLayout: FC<Props> = ({ children }) => {
   const { resolvedTheme } = useTheme()
-  const { setProfiles, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, setIsAuthenticated, currentUser, setCurrentUser } =
-    usePersistStore()
+  const { currentUser, setCurrentUser, setProfiles, setUserSigNonce } =
+    useAppStore()
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    selectedProfile,
+    setSelectedProfile
+  } = usePersistStore()
   const [pageLoading, setPageLoading] = useState<boolean>(true)
   const { data: account } = useAccount()
   const { activeConnector } = useConnect()
@@ -59,9 +64,11 @@ const SiteLayout: FC<Props> = ({ children }) => {
         )
 
       if (profiles.length === 0) {
-        setCurrentUser(undefined)
+        setCurrentUser(null)
+        setSelectedProfile(0)
       } else {
         setProfiles(profiles)
+        setCurrentUser(profiles[selectedProfile ?? 0])
         setUserSigNonce(data?.userSigNonces?.lensHubOnChainSigNonce)
       }
 
@@ -79,7 +86,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
 
     const logout = () => {
       setIsAuthenticated(false)
-      setCurrentUser(undefined)
+      setCurrentUser(null)
       Cookies.remove('accessToken')
       Cookies.remove('refreshToken')
       localStorage.removeItem('lenster.store')
@@ -93,7 +100,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
       accessToken &&
       accessToken !== 'undefined' &&
       refreshToken !== 'undefined' &&
-      currentUser &&
+      selectedProfile !== null &&
       activeChain?.id === CHAIN_ID
     ) {
       setIsAuthenticated(true)

@@ -79,8 +79,8 @@ const Create: NextPage = () => {
   )
   const [selectedCurrencySymobol, setSelectedCurrencySymobol] =
     useState<string>('WMATIC')
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const { isLoading: signLoading, signTypedDataAsync } = useSignTypedData({
     onError(error) {
       toast.error(error?.message)

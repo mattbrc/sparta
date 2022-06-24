@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
-import { usePersistStore } from 'src/store'
+import { useAppStore, usePersistStore } from 'src/store'
 
 import MenuItems from './MenuItems'
 import MoreNavItems from './MoreNavItems'
@@ -25,7 +25,8 @@ const PING_QUERY = gql`
 `
 
 const Navbar: FC = () => {
-  const { isAuthenticated, currentUser, staffMode } = usePersistStore()
+  const { currentUser } = useAppStore()
+  const { isAuthenticated, staffMode } = usePersistStore()
   const { data: pingData } = useQuery(PING_QUERY, {
     pollInterval: 3000,
     skip: !currentUser

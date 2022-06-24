@@ -119,8 +119,8 @@ interface Props {
 }
 
 const CollectModule: FC<Props> = ({ count, setCount, post }) => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [revenue, setRevenue] = useState<number>(0)
   const [showCollectorsModal, setShowCollectorsModal] = useState<boolean>(false)
   const [allowed, setAllowed] = useState<boolean>(true)

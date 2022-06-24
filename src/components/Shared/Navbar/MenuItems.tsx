@@ -47,14 +47,9 @@ const MenuItems: FC<Props> = ({ pingData }) => {
   const { theme, setTheme } = useTheme()
   const { disconnect } = useDisconnect()
 
-  const { profiles } = useAppStore()
-  const {
-    isAuthenticated,
-    currentUser,
-    setCurrentUser,
-    staffMode,
-    setStaffMode
-  } = usePersistStore()
+  const { currentUser, setCurrentUser, profiles } = useAppStore()
+  const { isAuthenticated, setSelectedProfile, staffMode, setStaffMode } =
+    usePersistStore()
 
   const toggleStaffMode = () => {
     setStaffMode(!staffMode)
@@ -128,7 +123,7 @@ const MenuItems: FC<Props> = ({ pingData }) => {
               <Menu.Item
                 as="a"
                 onClick={() => {
-                  setCurrentUser(undefined)
+                  setSelectedProfile(null)
                   Cookies.remove('accessToken')
                   Cookies.remove('refreshToken')
                   localStorage.removeItem('lenster.store')
@@ -160,6 +155,7 @@ const MenuItems: FC<Props> = ({ pingData }) => {
                           type="button"
                           className="flex items-center py-1.5 px-4 space-x-2 w-full rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
                           onClick={() => {
+                            setSelectedProfile(index)
                             setCurrentUser(profiles[index])
                           }}
                         >

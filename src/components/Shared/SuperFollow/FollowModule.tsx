@@ -107,8 +107,8 @@ const FollowModule: FC<Props> = ({
   setFollowersCount,
   again
 }) => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [allowed, setAllowed] = useState<boolean>(true)
   const { data: account } = useAccount()
   const { isLoading: signLoading, signTypedDataAsync } = useSignTypedData({

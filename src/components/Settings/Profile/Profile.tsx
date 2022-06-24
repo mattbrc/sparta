@@ -95,8 +95,8 @@ interface Props {
 }
 
 const Profile: FC<Props> = ({ profile }) => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [beta, setBeta] = useState<boolean>(isBeta(profile))
   const [pride, setPride] = useState<boolean>(hasPrideLogo(profile))
   const [cover, setCover] = useState<string>()

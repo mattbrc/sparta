@@ -22,7 +22,7 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import React, { FC, ReactElement, useEffect, useState } from 'react'
 import { STATIC_ASSETS } from 'src/constants'
-import { usePersistStore } from 'src/store'
+import { useAppStore, usePersistStore } from 'src/store'
 
 import Followerings from './Followerings'
 import ProfileMod from './Mod'
@@ -32,9 +32,10 @@ interface Props {
 }
 
 const Details: FC<Props> = ({ profile }) => {
+  const { currentUser } = useAppStore()
+  const { staffMode } = usePersistStore()
   const [followersCount, setFollowersCount] = useState<number>(0)
   const [following, setFollowing] = useState<boolean>(profile?.isFollowedByMe)
-  const { currentUser, staffMode } = usePersistStore()
   const { resolvedTheme } = useTheme()
   const { data: ensName } = useENS(profile?.ownedBy ?? '')
 

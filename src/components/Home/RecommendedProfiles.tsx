@@ -11,7 +11,7 @@ import { LightningBoltIcon, SparklesIcon } from '@heroicons/react/solid'
 import consoleLog from '@lib/consoleLog'
 import randomizeArray from '@lib/randomizeArray'
 import React, { FC } from 'react'
-import { usePersistStore } from 'src/store'
+import { useAppStore } from 'src/store'
 
 const RECOMMENDED_PROFILES_QUERY = gql`
   query RecommendedProfiles {
@@ -24,7 +24,7 @@ const RECOMMENDED_PROFILES_QUERY = gql`
 `
 
 const Title = () => {
-  const { currentUser } = usePersistStore()
+  const { currentUser } = useAppStore()
 
   return (
     <div className="flex gap-2 items-center px-5 mb-2 sm:px-0">

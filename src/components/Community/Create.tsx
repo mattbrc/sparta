@@ -47,8 +47,8 @@ const newCommunitySchema = object({
 })
 
 const Create: NextPage = () => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [avatar, setAvatar] = useState<string>()
   const [avatarType, setAvatarType] = useState<string>()
   const [isUploading, setIsUploading] = useState<boolean>(false)

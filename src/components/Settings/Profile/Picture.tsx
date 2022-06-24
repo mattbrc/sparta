@@ -67,8 +67,8 @@ interface Props {
 }
 
 const Picture: FC<Props> = ({ profile }) => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [avatar, setAvatar] = useState<string>()
   const [uploading, setUploading] = useState<boolean>(false)
   const { isLoading: signLoading, signTypedDataAsync } = useSignTypedData({

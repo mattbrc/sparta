@@ -97,8 +97,8 @@ const NFTPicture: FC<Props> = ({ profile }) => {
     }
   })
 
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [chainId, setChainId] = useState<number>(
     IS_MAINNET ? chain.mainnet.id : chain.kovan.id
   )

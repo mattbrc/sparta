@@ -72,8 +72,8 @@ interface Props {
 }
 
 const Fund: FC<Props> = ({ fund, collectModule, setRevenue, revenue }) => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [allowed, setAllowed] = useState<boolean>(true)
   const { data: account } = useAccount()
   const { isLoading: signLoading, signTypedDataAsync } = useSignTypedData({

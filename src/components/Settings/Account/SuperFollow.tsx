@@ -87,8 +87,8 @@ export const CREATE_SET_FOLLOW_MODULE_TYPED_DATA_MUTATION = gql`
 `
 
 const SuperFollow: FC = () => {
-  const { userSigNonce, setUserSigNonce } = useAppStore()
-  const { isAuthenticated, currentUser } = usePersistStore()
+  const { currentUser, userSigNonce, setUserSigNonce } = useAppStore()
+  const { isAuthenticated } = usePersistStore()
   const [selectedCurrency, setSelectedCurrency] = useState<string>(
     DEFAULT_COLLECT_TOKEN
   )
