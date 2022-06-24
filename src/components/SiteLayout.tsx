@@ -60,13 +60,9 @@ const SiteLayout: FC<Props> = ({ children }) => {
           !(a.isDefault !== b.isDefault) ? 0 : a.isDefault ? -1 : 1
         )
 
-      if (profiles.length === 0) {
-        setSelectedProfile(0)
-      } else {
-        setProfiles(profiles)
-        setCurrentUser(profiles[selectedProfile ?? 0])
-        setUserSigNonce(data?.userSigNonces?.lensHubOnChainSigNonce)
-      }
+      setProfiles(profiles)
+      setCurrentUser(profiles[selectedProfile ?? 0])
+      setUserSigNonce(data?.userSigNonces?.lensHubOnChainSigNonce)
 
       consoleLog(
         'Query',
