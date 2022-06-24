@@ -13,7 +13,6 @@ import { useAppStore, usePersistStore } from 'src/store'
 import { useAccount, useConnect, useDisconnect, useNetwork } from 'wagmi'
 
 import Loading from './Loading'
-import useIsMounted from './utils/hooks/useIsMounted'
 
 const Navbar = dynamic(() => import('./Shared/Navbar'), { suspense: true })
 
@@ -45,12 +44,11 @@ const SiteLayout: FC<Props> = ({ children }) => {
     selectedProfile,
     setSelectedProfile
   } = usePersistStore()
-  const [pageLoading, setPageLoading] = useState<boolean>(true)
+  const [mounted, setIsMounted] = useState<boolean>(false)
   const { data: account } = useAccount()
   const { activeConnector } = useConnect()
   const { activeChain } = useNetwork()
   const { disconnect } = useDisconnect()
-  const { mounted } = useIsMounted()
   const { loading } = useQuery(CURRENT_USER_QUERY, {
     variables: { ownedBy: account?.address },
     skip: !isAuthenticated,
@@ -81,17 +79,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
   useEffect(() => {
     const accessToken = Cookies.get('accessToken')
     const refreshToken = Cookies.get('refreshToken')
-
-    const logout = () => {
-      setIsAuthenticated(false)
-      setCurrentUser(null)
-      Cookies.remove('accessToken')
-      Cookies.remove('refreshToken')
-      localStorage.removeItem('lenster.store')
-      disconnect()
-    }
-
-    setPageLoading(false)
+    setIsMounted(true)
 
     if (
       refreshToken &&
@@ -102,12 +90,15 @@ const SiteLayout: FC<Props> = ({ children }) => {
       activeChain?.id === CHAIN_ID
     ) {
       setIsAuthenticated(true)
-    } else {
-      if (isAuthenticated) logout()
     }
 
     activeConnector?.on('change', () => {
-      logout()
+      setIsAuthenticated(false)
+      setCurrentUser(null)
+      Cookies.remove('accessToken')
+      Cookies.remove('refreshToken')
+      localStorage.removeItem('lenster.store')
+      disconnect()
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, activeConnector, disconnect, setCurrentUser])
@@ -134,7 +125,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
     loading: { className: 'border border-gray-300' }
   }
 
-  if (!mounted || loading || pageLoading) return <Loading />
+  if (loading || !mounted) return <Loading />
 
   return (
     <>
