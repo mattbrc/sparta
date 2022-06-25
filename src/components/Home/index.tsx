@@ -1,4 +1,4 @@
-import { GridItemEight, GridItemFour, GridLayout } from '@components/GridLayout'
+import { GridItemEight, GridLayout } from '@components/GridLayout'
 import Footer from '@components/Shared/Footer'
 import PostsShimmer from '@components/Shared/Shimmer/PostsShimmer'
 import SEO from '@components/utils/SEO'
@@ -26,10 +26,8 @@ const Home: NextPage = () => {
       <GridLayout>
         <GridItemEight className="space-y-5">
           {currentUser ? <HomeFeed /> : <ExploreFeed />}
-        </GridItemEight>
-        <GridItemFour>
           <Footer />
-        </GridItemFour>
+        </GridItemEight>
       </GridLayout>
     </>
   )
