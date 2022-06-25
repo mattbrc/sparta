@@ -101,7 +101,7 @@ const Navbar: FC = () => {
                 </Disclosure.Button>
                 <Link href="/" prefetch={false}>
                   <a href="/">
-                    <div className="text-3xl font-black">
+                    <div className="text-3xl">
                       <img
                         className="w-8 h-8"
                         height={32}
@@ -109,7 +109,7 @@ const Navbar: FC = () => {
                         src={
                           currentUser && hasPrideLogo(currentUser)
                             ? '/pride.svg'
-                            : '/logo.svg'
+                            : '/header-logo.png'
                         }
                         alt="Logo"
                       />
