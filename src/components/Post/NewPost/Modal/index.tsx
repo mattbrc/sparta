@@ -1,5 +1,6 @@
 import { Modal } from '@components/UI/Modal'
 import { PencilAltIcon } from '@heroicons/react/outline'
+import { Slider } from '@mui/material'
 import { FC, useState } from 'react'
 
 import NewPost from '..'
@@ -25,6 +26,30 @@ const NewPostModal: FC = () => {
         show={showModal}
         onClose={() => setShowModal(!showModal)}
       >
+        <div
+          style={{
+            padding: 20
+          }}
+        >
+          Distance (KM)
+        </div>
+        <div
+          style={{
+            padding: 25,
+            margin: 0
+          }}
+        >
+          <Slider
+            aria-label="Small steps"
+            defaultValue={0}
+            // getAriaValueText={valuetext}
+            step={1}
+            marks
+            min={0}
+            max={10}
+            valueLabelDisplay="auto"
+          />
+        </div>
         <NewPost setShowModal={setShowModal} hideCard />
       </Modal>
     </>
