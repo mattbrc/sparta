@@ -56,7 +56,7 @@ const MoreNavItems: FC = () => {
                   >
                     <div className="flex items-center space-x-1.5">
                       <UsersIcon className="w-4 h-4" />
-                      <div>Create Community</div>
+                      <div>Create Team</div>
                     </div>
                   </Menu.Item>
                   <Menu.Item
