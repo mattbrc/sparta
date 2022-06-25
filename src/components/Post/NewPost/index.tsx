@@ -303,7 +303,7 @@ const NewPost: FC<Props> = ({ setShowModal, hideCard = false }) => {
               setValue={setPostContent}
               error={postContentError}
               setError={setPostContentError}
-              placeholder="What's happening?"
+              placeholder="Share details about your workout! 💪😄"
             />
           )}
           <div className="block items-center sm:flex">

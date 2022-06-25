@@ -50,6 +50,32 @@ const NewPostModal: FC = () => {
             valueLabelDisplay="auto"
           />
         </div>
+
+        <div
+          style={{
+            padding: 20
+          }}
+        >
+          Time (mins)
+        </div>
+        <div
+          style={{
+            padding: 25,
+            margin: 0
+          }}
+        >
+          <Slider
+            aria-label="Small steps"
+            defaultValue={0}
+            // getAriaValueText={valuetext}
+            step={0.25}
+            marks
+            min={0}
+            max={120}
+            valueLabelDisplay="auto"
+          />
+        </div>
+
         <NewPost setShowModal={setShowModal} hideCard />
       </Modal>
     </>
