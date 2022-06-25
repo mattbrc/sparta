@@ -72,7 +72,7 @@ const Navbar: FC = () => {
         />
         <NavItem
           url="/communities"
-          name="Communities"
+          name="Teams"
           current={pathname == '/communities'}
         />
         <MoreNavItems />
