@@ -57,7 +57,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
         )
 
       if (profiles.length === 0) {
-        setCurrentUser(undefined)
+        setCurrentUser(null)
       } else {
         setProfiles(profiles)
         setUserSigNonce(data?.userSigNonces?.lensHubOnChainSigNonce)
@@ -78,7 +78,7 @@ const SiteLayout: FC<Props> = ({ children }) => {
 
     const logout = () => {
       setIsAuthenticated(false)
-      setCurrentUser(undefined)
+      setCurrentUser(null)
       Cookies.remove('accessToken')
       Cookies.remove('refreshToken')
       localStorage.removeItem('lenster.store')
