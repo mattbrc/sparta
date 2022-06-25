@@ -80,7 +80,8 @@ const Feed: FC<Props> = ({ feedType = 'TOP_COMMENTED' }) => {
             sortCriteria: feedType,
             cursor: pageInfo?.next,
             limit: 10,
-            noRandomize: feedType === 'LATEST'
+            noRandomize: feedType === 'LATEST',
+            sources: ['sparta']
           },
           reactionRequest: currentUser ? { profileId: currentUser?.id } : null
         }
