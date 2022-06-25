@@ -56,34 +56,10 @@ const MoreNavItems: FC = () => {
                   >
                     <div className="flex items-center space-x-1.5">
                       <UsersIcon className="w-4 h-4" />
-                      <div>Create Community</div>
+                      <div>Create Team</div>
                     </div>
                   </Menu.Item>
-                  <Menu.Item
-                    as={NextLink}
-                    href="/create/crowdfund"
-                    className={({ active }: { active: boolean }) =>
-                      clsx({ 'dropdown-active': active }, 'menu-item')
-                    }
-                  >
-                    <div className="flex items-center space-x-1.5">
-                      <CashIcon className="w-4 h-4" />
-                      <div>Create Crowdfund</div>
-                    </div>
-                  </Menu.Item>
-                  {!IS_MAINNET && (
-                    <Menu.Item
-                      as={NextLink}
-                      href="/create/profile"
-                      className={({ active }: { active: boolean }) =>
-                        clsx({ 'dropdown-active': active }, 'menu-item')
-                      }
-                    >
-                      <div className="flex items-center space-x-1.5">
-                        <UserIcon className="w-4 h-4" />
-                        <div>Create Profile</div>
-                      </div>
-                    </Menu.Item>
+                  
                   )}
                   <div className="divider" />
                 </>
