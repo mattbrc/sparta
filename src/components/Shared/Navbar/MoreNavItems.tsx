@@ -1,13 +1,7 @@
 import { Menu, Transition } from '@headlessui/react'
-import {
-  CashIcon,
-  SupportIcon,
-  UserIcon,
-  UsersIcon
-} from '@heroicons/react/outline'
+import { SupportIcon, UsersIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { FC, Fragment } from 'react'
-import { IS_MAINNET } from 'src/constants'
 import { usePersistStore } from 'src/store'
 
 import { NextLink } from './MenuItems'
@@ -59,8 +53,6 @@ const MoreNavItems: FC = () => {
                       <div>Create Team</div>
                     </div>
                   </Menu.Item>
-                  
-                  )}
                   <div className="divider" />
                 </>
               )}
