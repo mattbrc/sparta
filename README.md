@@ -1,7 +1,6 @@
 <div align="center">
-    <img src="public/logo.svg" height="70" alt="Lenster Logo">
-    <h1>Lenster</h1>
-    <strong>Decentralized, and permissionless social media app 🌿</strong>
+    <img src="public/logo.png" height="70" alt="Sparta Logo">
+    <strong>Decentralized fitness social media app built on Lens Protocol🌿</strong>
 </div>
 <br>
 <div align="center">
