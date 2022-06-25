@@ -51,7 +51,7 @@ const Feed: FC = () => {
   const [pageInfo, setPageInfo] = useState<PaginatedResultInfo>()
   const { data, loading, error, fetchMore } = useQuery(HOME_FEED_QUERY, {
     variables: {
-      request: { profileId: currentUser?.id, limit: 10 },
+      request: { profileId: currentUser?.id, limit: 10, sources: ['sparta'] },
       reactionRequest: currentUser ? { profileId: currentUser?.id } : null
     },
     fetchPolicy: 'no-cache',
