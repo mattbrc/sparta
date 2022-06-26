@@ -9,12 +9,7 @@ interface Props {
 
 const Slug: FC<Props> = ({ slug, prefix, className = '' }) => {
   return (
-    <span
-      className={clsx(
-        'text-transparent lens-font-color text-xs sm:text-sm',
-        className
-      )}
-    >
+    <span className={clsx('color:lens-lg text-xs sm:text-sm', className)}>
       {prefix}
       {slug}
     </span>

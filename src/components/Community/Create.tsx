@@ -210,8 +210,8 @@ const Create: NextPage = () => {
       <SEO title={`Create Community • ${APP_NAME}`} />
       <GridItemFour>
         <SettingsHelper
-          heading="Create community"
-          description="Create new decentralized community"
+          heading="Create Team"
+          description="Create new decentralized team"
         />
       </GridItemFour>
       <GridItemEight>
@@ -221,8 +221,8 @@ const Create: NextPage = () => {
               txHash={
                 data?.hash ? data?.hash : broadcastData?.broadcast?.txHash
               }
-              indexing="Community creation in progress, please wait!"
-              indexed="Community created successfully"
+              indexing="Team creation in progress, please wait!"
+              indexed="Team created successfully"
               type="community"
               urlPrefix="communities"
             />
@@ -237,12 +237,12 @@ const Create: NextPage = () => {
               <Input
                 label="Name"
                 type="text"
-                placeholder="minecraft"
+                placeholder="Crossfit Mayhem"
                 {...form.register('name')}
               />
               <TextArea
                 label="Description"
-                placeholder="Tell us something about the community!"
+                placeholder="Tell us something about the team!"
                 {...form.register('description')}
               />
               <div className="space-y-1.5">

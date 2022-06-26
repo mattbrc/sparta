@@ -27,8 +27,8 @@ const Settings: FC<Props> = ({ community }) => {
       <div className="space-y-2">
         <div className="font-bold text-red-500">Danger Zone</div>
         <p>
-          Deleting your community will delete only from indexers and not from
-          the blockchain.
+          Deleting your team will delete only from indexers and not from the
+          blockchain.
         </p>
         <Button
           className="!mt-5"

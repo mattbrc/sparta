@@ -21,14 +21,6 @@ const Footer: FC = () => {
       >
         Github
       </a>
-      <a
-        className="pr-3 hover:font-bold"
-        href={`https://vercel.com/?utm_source=${APP_NAME}&utm_campaign=oss`}
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        ▲ Powered by Vercel
-      </a>
     </footer>
   )
 }
