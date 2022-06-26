@@ -6,6 +6,7 @@ import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import React from 'react'
 import { usePersistStore } from 'src/store'
+import styled from 'styled-components'
 
 import Hero from './Hero'
 
@@ -26,7 +27,9 @@ const Home: NextPage = () => {
       <GridLayout>
         <GridItemEight className="space-y-5">
           {currentUser ? <HomeFeed /> : <ExploreFeed />}
-          <Footer />
+          <Center>
+            <Footer />
+          </Center>
         </GridItemEight>
       </GridLayout>
     </>
@@ -34,3 +37,11 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+const Center = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  flex-direction: column;
+`

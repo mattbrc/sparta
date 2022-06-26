@@ -125,3 +125,11 @@ body {
 iframe {
   @apply rounded-xl;
 }
+
+center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  flex-direction: column;
+}

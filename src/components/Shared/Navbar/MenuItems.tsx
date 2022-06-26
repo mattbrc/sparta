@@ -110,7 +110,7 @@ const MenuItems: FC<Props> = ({ pingData }) => {
               >
                 <div className="flex items-center space-x-1.5">
                   <UserIcon className="w-4 h-4" />
-                  <div>Your Profile</div>
+                  <div>Training Log</div>
                 </div>
               </Menu.Item>
               <Menu.Item
