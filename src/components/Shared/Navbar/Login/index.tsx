@@ -16,8 +16,8 @@ const Login: FC = () => {
             <div className="space-y-1">
               <div className="text-xl font-bold">Please sign the message.</div>
               <div className="text-sm text-gray-500">
-                {APP_NAME} uses this signature to verify that you&rsquo;re the
-                owner of this address.
+                {APP_NAME} uses this signature to verify that you're the owner
+                of this address.
               </div>
             </div>
           ) : (

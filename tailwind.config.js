@@ -8,9 +8,12 @@ module.exports = {
       colors: {
         gray: colors.zinc,
         green: colors.emerald,
-        purple: colors.violet,
+        purple: '#104f45',
         yellow: colors.yellow,
-        brand: colors.violet
+        brand: colors.violet,
+        'lens-lg': '#8cf85b',
+        'lens-dg': '#104f45',
+        'lens-llg': '#dcfbaa'
       },
       typography(theme) {
         return {

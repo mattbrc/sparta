@@ -7,10 +7,8 @@ import {
   ArrowCircleRightIcon,
   CogIcon,
   LogoutIcon,
-  MoonIcon,
   ShieldCheckIcon,
   ShieldExclamationIcon,
-  SunIcon,
   SwitchHorizontalIcon,
   UserIcon
 } from '@heroicons/react/outline'
@@ -181,29 +179,7 @@ const MenuItems: FC<Props> = ({ pingData }) => {
                 </>
               )}
               <div className="divider" />
-              <Menu.Item
-                as="a"
-                onClick={() => {
-                  setTheme(theme === 'light' ? 'dark' : 'light')
-                }}
-                className={({ active }: { active: boolean }) =>
-                  clsx({ 'dropdown-active': active }, 'menu-item')
-                }
-              >
-                <div className="flex items-center space-x-1.5">
-                  {theme === 'light' ? (
-                    <>
-                      <MoonIcon className="w-4 h-4" />
-                      <div>Dark mode</div>
-                    </>
-                  ) : (
-                    <>
-                      <SunIcon className="w-4 h-4" />
-                      <div>Light mode</div>
-                    </>
-                  )}
-                </div>
-              </Menu.Item>
+
               {currentUser && GIT_COMMIT_SHA && (
                 <>
                   <div className="divider" />

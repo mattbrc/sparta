@@ -44,7 +44,7 @@ body {
 }
 
 .bg-hero {
-  background: url('./assets/sparta-header.png');
+  background-color: #8cf85b;
   background-size: cover;
 }
 
@@ -124,12 +124,4 @@ body {
 .iframely-player,
 iframe {
   @apply rounded-xl;
-}
-
-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: 2em;
-  flex-direction: column;
 }
