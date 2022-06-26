@@ -24,6 +24,7 @@ import omit from '@lib/omit'
 import splitSignature from '@lib/splitSignature'
 import trimify from '@lib/trimify'
 import uploadToIPFS from '@lib/uploadToIPFS'
+import { Slider } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { Dispatch, FC, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -119,6 +120,16 @@ const NewPost: FC<Props> = ({ setShowModal, hideCard = false }) => {
       toast.error(error?.message)
     }
   })
+
+  const [distance, setDistance] = useState<number>(0)
+  const handleDistanceChange = (event: Event, newValue: number | number[]) => {
+    setDistance(newValue as number)
+  }
+
+  const [time, setTime] = useState<number>(0)
+  const handleTimeChange = (event: Event, newValue: number | number[]) => {
+    setTime(newValue as number)
+  }
 
   const onCompleted = () => {
     setPreview(false)
@@ -223,14 +234,26 @@ const NewPost: FC<Props> = ({ setShowModal, hideCard = false }) => {
       return setPostContentError('Post should not be empty!')
     }
 
+    if (distance === 0 || time === 0) {
+      return setPostContentError('Enter a distance and time!')
+    }
+
+    const distanceStr = `distance:${distance.toString()}`
+    const timeStr = `time:${time.toString()}`
+    const workoutMetadataStr = distanceStr + ',' + timeStr
+    console.log(workoutMetadataStr)
+
+    const contentStr = workoutMetadataStr + ',' + `content:${postContent}`
+    console.log(contentStr)
+
     setPostContentError('')
     setIsUploading(true)
     // TODO: Add animated_url support
     const { path } = await uploadToIPFS({
       version: '1.0.0',
       metadata_id: uuid(),
-      description: trimify(postContent),
-      content: trimify(postContent),
+      description: trimify(contentStr),
+      content: trimify(contentStr),
       external_url: `https://lenster.xyz/u/${currentUser?.handle}`,
       image: attachments.length > 0 ? attachments[0]?.item : null,
       imageMimeType: attachments.length > 0 ? attachments[0]?.type : null,
@@ -284,6 +307,43 @@ const NewPost: FC<Props> = ({ setShowModal, hideCard = false }) => {
 
   return (
     <Card className={hideCard ? 'border-0 !shadow-none !bg-transparent' : ''}>
+      <div
+        style={{
+          padding: 25,
+          margin: 0
+        }}
+      >
+        <div> Distance (KM): {distance} KMs </div>
+        <Slider
+          aria-label="Small steps"
+          defaultValue={distance}
+          onChange={handleDistanceChange}
+          step={0.25}
+          marks
+          min={0}
+          max={10}
+          valueLabelDisplay="auto"
+        />
+      </div>
+      <div
+        style={{
+          padding: 25,
+          margin: 0
+        }}
+      >
+        <div> Time (mins): {time} mins </div>
+        <Slider
+          aria-label="Small steps"
+          defaultValue={time}
+          onChange={handleTimeChange}
+          step={0.25}
+          marks
+          min={0}
+          max={120}
+          valueLabelDisplay="auto"
+        />
+      </div>
+
       <div className="px-5 pt-5 pb-3">
         <div className="space-y-1">
           {error && (
