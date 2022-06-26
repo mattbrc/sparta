@@ -27,6 +27,34 @@ const PostBody: FC<Props> = ({ post }) => {
     post?.metadata?.content?.length > 450
   )
 
+  function postDistance(): string {
+    const postContentComponents = post?.metadata?.content.split(',')
+    console.log(postContentComponents)
+    if (!!postContentComponents[0]) {
+      const distance = postContentComponents[0].split(':')[1]
+      return `Distance: ${distance} KM`
+    }
+    return 'Post not encoded correctly :,('
+  }
+
+  function postTime(): string {
+    const postContentComponents = post?.metadata?.content.split(',')
+    if (!!postContentComponents[1]) {
+      const time = postContentComponents[1].split(':')[1]
+      return `Time: ${time} mins`
+    }
+    return 'Post not encoded correctly :,('
+  }
+
+  function postContent(): string {
+    const postContentComponents = post?.metadata?.content.split(',')
+    if (!!postContentComponents[2]) {
+      const postContent = postContentComponents[2].split(':')[1]
+      return postContent
+    }
+    return 'Post not encoded correctly :,('
+  }
+
   return (
     <div className="break-words">
       {postType === 'community' ? (
@@ -75,7 +103,10 @@ const PostBody: FC<Props> = ({ post }) => {
             })}
           >
             <div className="whitespace-pre-wrap break-words leading-md linkify text-md">
-              <Markup>{post?.metadata?.content}</Markup>
+              <div> {postDistance()} </div>
+              <div> {postTime()} </div>
+              <div> </div>
+              <Markup>{postContent()}</Markup>
             </div>
           </div>
           {showMore && pathname !== '/posts/[id]' && (
