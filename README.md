@@ -7,7 +7,7 @@
 
 ## 🌿 About Sparta
 
-Sparta is a decentralized fitness social media app built with [Lens Protocol](http://lens.dev/) 🌿 and forked from Lenster (lenster.xyz)[https://lenster.xyz/]
+Sparta is a decentralized fitness social media app built with [Lens Protocol](http://lens.dev/) 🌿 and forked from Lenster [lenster.xyz](https://lenster.xyz/)
 
 ## ⚙️ Setup
 
