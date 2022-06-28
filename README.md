@@ -5,9 +5,9 @@
 </div>
 <br>
 
-## 🌿 About Sparta
+## 🌿 About Sparta-Lens-ETHNYC
 
-Sparta is a decentralized fitness social media app built with [Lens Protocol](http://lens.dev/) 🌿 and forked from Lenster [lenster.xyz](https://lenster.xyz/)
+Sparta-Lens-ETHNYC is a decentralized fitness social media app built with [Lens Protocol](http://lens.dev/) 🌿 and forked from Lenster [(lenster.xyz)](https://lenster.xyz/) during the ETHNYC 2022 hackathon. The goal was to simply filter for sparta-only posts and test the concept using a previously built out social media app on Lens. The full scale build will be built from scratch.
 
 ## ⚙️ Setup
 
